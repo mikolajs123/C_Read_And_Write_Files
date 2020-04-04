@@ -61,16 +61,6 @@ double how_high_is_debt (struct Client *p)
     return result;
 }
 
-void display (struct Client *p)
-{
-    while (p != NULL) {
-        printf("client_number: %d\n", p->client_number);
-        printf("debt: %f\n", p->debt);
-        p = p->next;
-    }
-    return;
-}
-
 void read_and_save_to_linked_list (FILE *fr, struct Client **list, char path[])
 {
     fr = fopen(path, "r");
@@ -131,7 +121,6 @@ int main(int argc, const char * argv[]) {
     FILE *fr = NULL, *fw = NULL;
     char input[] = "/Users/mikolajsemeniuk/Desktop/klienci.txt", output[] = "/Users/mikolajsemeniuk/Desktop/wynik.txt";
     read_and_save_to_linked_list(fr, &list, input);
-    display(list);
     write_and_save_to_file(fw, &list, output);
     return 0;
 }
