@@ -71,9 +71,9 @@ void display (struct Client *p)
     return;
 }
 
-void read_and_save_to_linked_list (FILE *fr, struct Client **list, char a[])
+void read_and_save_to_linked_list (FILE *fr, struct Client **list, char path[])
 {
-    fr = fopen(a, "r");
+    fr = fopen(path, "r");
     
     char *client_number = "", *debt = "";
     bool change = true;
@@ -115,11 +115,11 @@ void read_and_save_to_linked_list (FILE *fr, struct Client **list, char a[])
     return;
 }
 
-void write_and_save_to_file(FILE *fw, struct Client **list, char a[])
+void write_and_save_to_file(FILE *fw, struct Client **list, char path[])
 {
-    fw = fopen (a,"w");
+    fw = fopen (path,"w");
     
-    fprintf (fw, "How many customers in debt: %d\nHow much is debt: %f", how_many_clients_in_debt(*list), how_high_is_debt(*list));
+    fprintf (fw, "How many customers in debt: %d\nHow much is debt: %g", how_many_clients_in_debt(*list), how_high_is_debt(*list));
 
     fclose (fw);
     return;
