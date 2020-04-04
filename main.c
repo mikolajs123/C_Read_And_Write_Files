@@ -108,7 +108,7 @@ void read_and_save_to_linked_list (FILE *fr, struct Client **list, char a[])
             memset(client_number, 0, len1);
             memset(debt, 0, len2);
             a = 0;
-            b = 0;
+            b = 0.0;
         }
         str = fgetc(fr);
     }
