@@ -71,9 +71,9 @@ void display (struct Client *p)
     return;
 }
 
-void read_and_save_to_linked_list (FILE *fr, struct Client **list)
+void read_and_save_to_linked_list (FILE *fr, struct Client **list, char a[])
 {
-    fr = fopen("/Users/mikolajsemeniuk/Desktop/klienci.txt", "r");
+    fr = fopen(a, "r");
     
     char *client_number = "", *debt = "";
     bool change = true;
@@ -115,9 +115,9 @@ void read_and_save_to_linked_list (FILE *fr, struct Client **list)
     return;
 }
 
-void write_and_save_to_file(FILE *fw, struct Client **list)
+void write_and_save_to_file(FILE *fw, struct Client **list, char a[])
 {
-    fw = fopen ("/Users/mikolajsemeniuk/Desktop/wynik.txt","w");
+    fw = fopen (a,"w");
     
     fprintf (fw, "How many customers in debt: %d\nHow much is debt: %f", how_many_clients_in_debt(*list), how_high_is_debt(*list));
 
@@ -129,8 +129,9 @@ int main(int argc, const char * argv[]) {
     // insert code here...
     struct Client *list = NULL;
     FILE *fr = NULL, *fw = NULL;
-    read_and_save_to_linked_list(fr, &list);
+    char input[] = "/Users/mikolajsemeniuk/Desktop/klienci.txt", output[] = "/Users/mikolajsemeniuk/Desktop/wynik.txt";
+    read_and_save_to_linked_list(fr, &list, input);
     display(list);
-    write_and_save_to_file(fw, &list);
+    write_and_save_to_file(fw, &list, output);
     return 0;
 }
