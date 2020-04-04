@@ -38,6 +38,20 @@ void append(struct Client **head, int client_number, double debt)
     return;
 }
 
+void deleteList(struct Client **head)
+{
+    struct Client *tail = *head, *temp = NULL;
+    while (tail != NULL)
+    {
+        temp = tail->next;
+        free(tail);
+        tail = temp;
+    }
+    head = NULL;
+    tail = NULL;
+    temp = NULL;
+}
+
 int how_many_clients_in_debt (struct Client *p)
 {
     int result = 0;
@@ -110,7 +124,6 @@ void write_and_save_to_file(FILE *fw, struct Client **list, char path[])
     fw = fopen (path,"w");
     
     fprintf (fw, "How many customers in debt: %d\nHow much is debt: %g", how_many_clients_in_debt(*list), how_high_is_debt(*list));
-
     fclose (fw);
     return;
 }
@@ -122,5 +135,6 @@ int main(int argc, const char * argv[]) {
     char input[] = "/Users/mikolajsemeniuk/Desktop/klienci.txt", output[] = "/Users/mikolajsemeniuk/Desktop/wynik.txt";
     read_and_save_to_linked_list(fr, &list, input);
     write_and_save_to_file(fw, &list, output);
+    deleteList(&list);
     return 0;
 }
