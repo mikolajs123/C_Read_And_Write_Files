@@ -52,7 +52,7 @@ int how_many_clients_in_debt (struct Client *p)
 
 double how_high_is_debt (struct Client *p)
 {
-    double result = 0;
+    double result = 0.0;
     while (p != NULL)
     {
         result += p->debt;
